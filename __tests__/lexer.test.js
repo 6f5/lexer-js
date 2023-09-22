@@ -23,6 +23,12 @@ const {
   TRUE,
   INT,
   IDENT,
+  GT_EQ,
+  LT_EQ,
+  NOT_EQ,
+  EQ,
+  GT,
+  LT,
 } = require("../tokens");
 const Lexer = require("../lexer");
 
@@ -89,7 +95,15 @@ test("should tokenize logical operators", () => {
 test("should tokenize comparison operators", () => {
   const source = "> < >= <= != ==";
 
-  const expectedTokens = [];
+  const expectedTokens = [
+    new Token(GT, ">"),
+    new Token(LT, "<"),
+    new Token(GT_EQ, ">="),
+    new Token(LT_EQ, "<="),
+    new Token(NOT_EQ, "!="),
+    new Token(EQ, "=="),
+    new Token(EOF, null),
+  ];
 
   const lexer = new Lexer();
   lexer.init(source);
