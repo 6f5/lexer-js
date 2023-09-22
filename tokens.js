@@ -4,6 +4,7 @@ const EOF = "EOF";
 // Identifiers and Literals
 const IDENT = "IDENT";
 const INT = "INT";
+const STRING = "STRING";
 
 // Operators
 const PLUS = "+";
@@ -13,6 +14,10 @@ const ASTERISK = "*";
 const ASSIGN = "=";
 const EQ = "==";
 const NOT_EQ = "!=";
+const GT = ">";
+const LT = "<";
+const GT_EQ = ">=";
+const LT_EQ = "<=";
 
 // Nogical operators
 const NOT = "!";
@@ -39,9 +44,28 @@ const FOR = "FOR";
 
 class Token {
   constructor(type, literal) {
-    this.type;
-    this.literal;
+    this.type = type;
+    this.literal = literal;
   }
+}
+
+const keywords = {
+  fn: FUNCTION,
+  let: LET,
+  if: IF,
+  else: ELSE,
+  return: RETURN,
+  false: FALSE,
+  true: TRUE,
+  for: FOR,
+};
+
+function lookupIdentifier(ident) {
+  if (keywords.hasOwnProperty(ident)) {
+    return keywords[ident];
+  }
+
+  return IDENT;
 }
 
 module.exports = {
@@ -54,6 +78,7 @@ module.exports = {
   // Identifiers and Literals
   IDENT,
   INT,
+  STRING,
 
   // Operators
   PLUS,
@@ -63,6 +88,10 @@ module.exports = {
   ASSIGN,
   EQ,
   NOT_EQ,
+  GT,
+  LT,
+  GT_EQ,
+  LT_EQ,
 
   // Logical operators
   NOT,
@@ -86,4 +115,6 @@ module.exports = {
   TRUE,
   FALSE,
   FOR,
+
+  lookupIdentifier,
 };
